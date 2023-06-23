@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "775964874330",
-    "project_id": "easylogin-77841",
-    "storage_bucket": "easylogin-77841.appspot.com"
+    "project_number": "936290173293",
+    "firebase_url": "https://customlogin-192b0-default-rtdb.firebaseio.com",
+    "project_id": "customlogin-192b0",
+    "storage_bucket": "customlogin-192b0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:775964874330:android:7bece1d7342f25024d2a63",
+        "mobilesdk_app_id": "1:936290173293:android:dff91ba8244ed5fd0e5a64",
         "android_client_info": {
-          "package_name": "com.android.application"
+          "package_name": "com.example.intentexample"
         }
       },
       "oauth_client": [
         {
-          "client_id": "775964874330-mhn2scidhaurk9df3futsq8aml7gqorh.apps.googleusercontent.com",
+          "client_id": "936290173293-090m0mkgpdsc92573d7on3pf0slq98rv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCQL5bVo4Zy13LX1NfsEgkKF6Fi7m0iCGs"
+          "current_key": "AIzaSyBGYLy85i1geHdzF7rK47LKoVbN7AwKP9I"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "775964874330-mhn2scidhaurk9df3futsq8aml7gqorh.apps.googleusercontent.com",
+              "client_id": "936290173293-090m0mkgpdsc92573d7on3pf0slq98rv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

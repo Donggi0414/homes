@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("homes");
 
-        mEtEmail = findViewById((R.id.et_email);
+        mEtEmail = findViewById(R.id.et_email);
         mEtPwd = findViewById(R.id.et_pwd);
 
 
@@ -57,7 +57,7 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(Login.this, "로그인 실패!", Toast.LENGTH_SHORT).show();
                         }
                     }
-                })
+                });
             }
         });
 

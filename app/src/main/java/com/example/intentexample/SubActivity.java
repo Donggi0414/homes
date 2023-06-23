@@ -59,11 +59,22 @@ public class SubActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerView = (View) findViewById(R.id.drawer);
 
-        Button btn_open = (Button) findViewById(R.id.btn_open);
+        Button btn_open = findViewById(R.id.btn_open);
+        Button btn_search = findViewById(R.id.btn_search);
         btn_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(drawerView);
+            }
+        });
+
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 검색
+                Intent intent = new Intent(SubActivity.this, Search.class);
+                startActivity(intent);
+
             }
         });
 

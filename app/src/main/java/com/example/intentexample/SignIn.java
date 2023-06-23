@@ -33,9 +33,9 @@ public class SignIn extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("homes");
 
-        mEtEmail = findViewById((R.id.et_email);
+        mEtEmail = findViewById(R.id.et_email);
         mEtPwd = findViewById(R.id.et_pwd);
-        mBtnRegister = findViewById(R.id.btn_register));
+        mBtnRegister = findViewById(R.id.btn_register);
 
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
