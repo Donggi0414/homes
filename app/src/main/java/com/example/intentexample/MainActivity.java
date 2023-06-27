@@ -196,12 +196,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnNaverLogin = findViewById(R.id.btn_naverLogin);
-        btnNaverLogin.setOnClickListener(new View.OnClickListener() {
+        Button btn_register = findViewById(R.id.btn_register);
+        btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/";
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                Intent intent = new Intent(MainActivity.this, SignIn.class);
                 startActivity(intent);
             }
         });

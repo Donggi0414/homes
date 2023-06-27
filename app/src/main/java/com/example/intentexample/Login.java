@@ -61,16 +61,5 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
-        Button btn_register = findViewById(R.id.btn_register);
-        btn_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //회원가입 화면으로 이동
-                Intent intent = new Intent(Login.this, SignIn.class);
-                startActivity(intent);
-            }
-        });
-
     }
 }
