@@ -104,6 +104,7 @@
                         android:layout_gravity="center_horizontal"/>
 
                     <EditText
+                        android:id="@+id/parking"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10sp"
@@ -129,6 +130,7 @@
                         android:layout_gravity="center_horizontal"/>
 
                     <EditText
+                        android:id="@+id/dong_dist"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10sp"
@@ -154,6 +156,7 @@
                         android:layout_gravity="center_horizontal"/>
 
                     <EditText
+                        android:id="@+id/management"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10sp"
@@ -179,6 +182,7 @@
                         android:layout_gravity="center_horizontal"/>
 
                     <EditText
+                        android:id="@+id/school_env"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10sp"
@@ -204,6 +208,7 @@
                         android:layout_gravity="center_horizontal"/>
 
                     <EditText
+                        android:id="@+id/facilities"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10sp"
@@ -255,6 +260,7 @@
                         android:layout_gravity="center_horizontal"/>
 
                     <EditText
+                        android:id="@+id/dong"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10sp"
@@ -280,6 +286,7 @@
                         android:layout_gravity="center_horizontal"/>
 
                     <EditText
+                        android:id="@+id/area"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10sp"
@@ -305,6 +312,7 @@
                         android:layout_gravity="center_horizontal"/>
 
                     <EditText
+                        android:id="@+id/total_price"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:padding="10sp"
@@ -322,23 +330,23 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
         android:text="저장"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/delete"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="삭제"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintHorizontal_bias="0.14" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

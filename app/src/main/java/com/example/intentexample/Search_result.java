@@ -2,6 +2,7 @@ package com.example.intentexample;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -53,6 +54,9 @@ public class Search_result extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         search_result_txt = findViewById(R.id.search_result_txt);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("homes");
         String name = getIntent().getStringExtra("selectedItem");
