@@ -21,6 +21,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -41,8 +42,15 @@ import android.Manifest;
 import android.widget.Toast;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -50,12 +58,11 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
 
     private FragmentManager fragmentManager;
     private MapFragment mapFragment;
-
+    private DatabaseReference mDatabaseRef;
     private GoogleMap googleMap;
 
-//    private List<LatLng> polylinePoints;
-//
-//    private Polyline polyline;
+    public HashMap<String, String> result = new HashMap<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,17 +72,10 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         fragmentManager = getFragmentManager();
         mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.googleMap);
         mapFragment.getMapAsync(this);
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("homes");
 
-//        polylinePoints = new ArrayList<>();
 
-        Button btn_backToMain = findViewById(R.id.btn_backToMain);
-        btn_backToMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MapTrace.this, SubActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
     }
 
@@ -93,7 +93,7 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
 
         LatLng clover = new LatLng(36.352428, 127.392585); // 크로바아파트
         MarkerOptions m_clover = new MarkerOptions();
-        m_clover.title("크로바 아파트");
+        m_clover.title("둔산 크로바");
         m_clover.snippet("1,632세대 / 30년 / 3,577만원");
         m_clover.position(clover);
         m_clover.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
@@ -101,7 +101,7 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
 
         LatLng mokRyeon = new LatLng(36.35007, 127.392062); // 목련아파트
         MarkerOptions m_mokRyeon = new MarkerOptions();
-        m_mokRyeon.title("목련 아파트");
+        m_mokRyeon.title("목련");
         m_mokRyeon.snippet("1,166세대 / 30년 / 2,827만원");
         m_mokRyeon.position(mokRyeon);
         m_mokRyeon.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
@@ -109,7 +109,7 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
 
         LatLng hanmaru = new LatLng(36.354743, 127.392966); // 한마루럭키아파트
         MarkerOptions m_hanmaru = new MarkerOptions();
-        m_hanmaru.title("한마루럭키 아파트");
+        m_hanmaru.title("한마루럭키아파트");
         m_hanmaru.snippet("700세대 / 30년 / 2,303만원");
         m_hanmaru.position(hanmaru);
         m_hanmaru.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
@@ -117,7 +117,7 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
 
         LatLng hanmaruSamsung = new LatLng(36.354743, 127.391420); // 한마루삼성아파트
         MarkerOptions m_hanmaruSamsung = new MarkerOptions();
-        m_hanmaruSamsung.title("한마루삼성 아파트");
+        m_hanmaruSamsung.title("한마루삼성");
         m_hanmaruSamsung.snippet("700세대 / 30년 / 2,303만원");
         m_hanmaruSamsung.position(hanmaruSamsung);
         m_hanmaruSamsung.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
@@ -283,6 +283,64 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_bluebird.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
 
+        LatLng moogoonghwa = new LatLng(36.363719, 127.377869); // 월평무궁화아파트
+        MarkerOptions m_moogoonghwa = new MarkerOptions();
+        m_moogoonghwa.title("월평무궁화 아파트");
+        m_moogoonghwa.snippet("630세대 / 29년 / 1,366만원");
+        m_moogoonghwa.position(moogoonghwa);
+        m_moogoonghwa.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
+
+
+        LatLng hanarum = new LatLng(36.363389, 127.375570); // 한아름아파트
+        MarkerOptions m_hanarum = new MarkerOptions();
+        m_hanarum.title("한아름 아파트");
+        m_hanarum.snippet("780세대 / 29년 / 1,389만원");
+        m_hanarum.position(hanarum);
+        m_hanarum.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
+
+
+        LatLng beakhap = new LatLng(36.361619, 127.375615); // 백합아파트
+        MarkerOptions m_beakhap = new MarkerOptions();
+        m_beakhap.title("백합 아파트");
+        m_beakhap.snippet("622세대 / 30년 / 1,444만원");
+        m_beakhap.position(beakhap);
+        m_beakhap.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
+
+
+        // 마커 info window 클릭시 검색화면으로 이동하도록
+        GoogleMap.OnInfoWindowClickListener infoWindowClickListener = new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                // MarkerOption 클릭시 실행되는 코드
+                String markerTitle = marker.getTitle();
+                // Intent 생성
+                Intent intent = new Intent(MapTrace.this, Search_result.class);
+
+                // Intent에 필요한 데이터 추가 (옵션)
+                intent.putExtra("markerTitle", markerTitle);
+                mDatabaseRef.child("Apartments").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            Log.d("firebase", "error retrieving data");
+                        }
+                        else {
+                            result = (HashMap<String, String>) task.getResult().getValue();
+                            intent.putExtra("aptCodeList", (Serializable) result);
+                            startActivity(intent);
+
+                        }
+                    }
+                });
+
+                // 다른 화면으로 전환
+            }
+        };
+
+        googleMap.setOnInfoWindowClickListener(infoWindowClickListener);
+
+
+
         int desiredWidth = 100; // 원하는 아이콘의 너비
         int desiredHeight = 100; // 원하는 아이콘의 높이
 
@@ -316,11 +374,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_nokwon.icon(resizedBitmapDescriptor);
         m_hyangchon.icon(resizedBitmapDescriptor);
         m_bluebird.icon(resizedBitmapDescriptor);
+        m_moogoonghwa.icon(resizedBitmapDescriptor);
+        m_hanarum.icon(resizedBitmapDescriptor);
+        m_beakhap.icon(resizedBitmapDescriptor);
 
 
 // 마커 추가
-//        this.googleMap.addMarker(m_clover);
-//        this.googleMap.addMarker(m_mokRyeon);
 
         this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kaist, 16));
 
@@ -348,6 +407,9 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         Marker nokwonMarker = this.googleMap.addMarker(m_nokwon);
         Marker hyangchonMarker = this.googleMap.addMarker(m_hyangchon);
         Marker bluebirdMarker = this.googleMap.addMarker(m_bluebird);
+        Marker moogoonghwaMarker = this.googleMap.addMarker(m_moogoonghwa);
+        Marker hanarumMarker = this.googleMap.addMarker(m_hanarum);
+        Marker beakhapMarker = this.googleMap.addMarker(m_beakhap);
 
 
         googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
@@ -386,19 +448,14 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
                 nokwonMarker.setIcon(resizedBitmapDescriptor);
                 hyangchonMarker.setIcon(resizedBitmapDescriptor);
                 bluebirdMarker.setIcon(resizedBitmapDescriptor);
+                moogoonghwaMarker.setIcon(resizedBitmapDescriptor);
+                hanarumMarker.setIcon(resizedBitmapDescriptor);
+                beakhapMarker.setIcon(resizedBitmapDescriptor);
 
             }
         });
 
 
-//        googleMap.setMyLocationEnabled(true);
-//        googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-//            @Override
-//            public boolean onMyLocationButtonClick() {
-//                startLocationUpdates();
-//                return true;
-//            }
-//        });
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             googleMap.setMyLocationEnabled(true);
@@ -408,87 +465,6 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
 
     }
 
-
-//    public BitmapDescriptor setIcon(Activity context, int drawableID) {
-//        Drawable drawable = ActivityCompat.getDrawable(context, drawableID);
-//        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-//        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-//        Canvas canvas = new Canvas(bitmap);
-//        drawable.draw(canvas);
-//
-//        return BitmapDescriptorFactory.fromBitmap(bitmap);
-//    }
-
-//    private void startLocationUpdates() {
-//        LocationRequest locationRequest = LocationRequest.create()
-//                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-//                .setInterval(5000) // 5 seconds
-//                .setFastestInterval(2000); // 2 seconds
-//
-//        LocationServices.getFusedLocationProviderClient(this)
-//                .requestLocationUpdates(locationRequest, new LocationCallback() {
-//                    @Override
-//                    public void onLocationResult(LocationResult locationResult) {
-//                        if (locationResult != null) {
-//                            Location location = locationResult.getLastLocation();
-//                            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-//                            polylinePoints.add(latLng);
-//                            updatePolyline();
-//                        }
-//                    }
-//                }, Looper.getMainLooper());
-//    }
-//
-//    private void updatePolyline() {
-//        if (polyline != null) {
-//            polyline.remove();
-//        }
-//
-//        PolylineOptions polylineOptions = new PolylineOptions()
-//                .color(Color.BLUE)
-//                .width(5f)
-//                .addAll(polylinePoints);
-//
-//        polyline = googleMap.addPolyline(polylineOptions);
-//    }
-//
-//    @Override
-//    public void onLocationChanged(Location location) {
-//        // 위치 변경 시 호출되는 메서드
-//        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-//        polylinePoints.add(latLng);
-//        updatePolyline();
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        // 액티비티가 다시 활성화될 때 위치 업데이트를 시작
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//            startLocationUpdates();
-//        } else {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
-//        }
-//    }
-//
-//    private LocationCallback locationCallback = new LocationCallback() {
-//        @Override
-//        public void onLocationResult(LocationResult locationResult) {
-//            if (locationResult != null) {
-//                Location location = locationResult.getLastLocation();
-//                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-//                polylinePoints.add(latLng);
-//                updatePolyline();
-//            }
-//        }
-//    };
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        // 액티비티가 일시 정지될 때 위치 업데이트를 중지
-//        LocationServices.getFusedLocationProviderClient(this).removeLocationUpdates(locationCallback);
-//    }
 
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -529,7 +505,3 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         }
     }
 }
-//
-//    위의 코드는 버튼을 클릭하여 타임라인 기능을 토글하는 기능을 구현한 코드입니다. `onToggleTimelineClicked()` 메서드는 버튼 클릭 이벤트를 처리하고, 타임라인 기능 상태에 따라 `showTimelineRecords()` 메서드를 호출하여 타임라인 기록을 가져오거나 `clearTimeline()` 메서드를 호출하여 타임라인 기록을 제거합니다. 타임라인 기록을 가져오는 작업에는 Places API를 사용하여 현재 장소를 가져오는 예시가 포함되어 있습니다.
-//    또한, 위치 권한을 확인하고 요청하는 부분도 포함되어 있어, 사용자가 위치 권한을 허용해야지만 내 타임라인 기록을 가져오고 폴리라인을 그릴 수 있습니다. `checkLocationPermissionWithRationale()` 메서드는 위치 권한을 확인하고, 권한이 없는 경우에는 권한 요청 다이얼로그를 표시합니다. 사용자가 위치 권한을 허용하거나 거부한 후에는 `onRequestPermissionsResult()` 메서드가 호출되어 처리합니다.
-//    위의 코드를 참고하여 타임라인 기능을 토글하는 버튼을 구현하실 수 있습니다. 필요에 따라 추가적인 기능을 구현하고 수정하여 사용해보세요.

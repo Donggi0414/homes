@@ -1,8 +1,8 @@
 package com.example.intentexample;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -43,27 +44,74 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import android.widget.CheckBox;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+
 
 public class Search_result extends AppCompatActivity implements Serializable {
     private DatabaseReference mDatabaseRef;
+    private FirebaseAuth mFirebaseAuth;
+
     TextView search_result_txt;
     String aptCode;
     private String aptName;
+    CheckBox myCheckBox;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
         search_result_txt = findViewById(R.id.search_result_txt);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("homes");
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        myCheckBox = findViewById(R.id.myCheckBox);
         String name = getIntent().getStringExtra("selectedItem");
         HashMap<String, String> aptcode_list = (HashMap<String, String>) getIntent().getSerializableExtra("aptCodeList");
         aptCode = aptcode_list.get(name);
         System.out.println("selected item: " + name);
         System.out.println("apartment code: " + aptCode);
+
+        search_result_txt.append(name);
+        TableLayout tableLayout = findViewById(R.id.tableLayout);
+        TableRow headerRow = tableLayout.findViewById(R.id.headerRow);
+
+        Button btn_checkList = findViewById(R.id.btn_checkList);
+        btn_checkList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aptName = search_result_txt.getText().toString();
+                Intent intent = new Intent(Search_result.this, WriteCheckList.class);
+                intent.putExtra("aptName", aptName);
+                startActivity(intent);
+            }
+        });
+        CheckBox saveAptCodeCheckBox = findViewById(R.id.myCheckBox);
+        saveAptCodeCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // 체크박스가 체크되었을 때
+                    // 파이어베이스에 aptCode 저장
+                    mDatabaseRef.child("UserAccount")
+                            .child(mFirebaseAuth.getUid())
+                            .child("favorite")
+                            .push().setValue(aptCode);
+
+                } else {
+                    // 체크박스가 해제되었을 때
+                    // 파이어베이스에서 aptCode 삭제
+                    mDatabaseRef.child("UserAccount")
+                            .child(mFirebaseAuth.getUid())
+                            .child("favorite")
+                            .removeValue();
+
+                }
+            }
+        });
+
+
 
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1613000/AptBasisInfoService1/getAphusBassInfo"); /*URL*/
         try {
@@ -149,6 +197,9 @@ public class Search_result extends AppCompatActivity implements Serializable {
         } catch (SAXException e) {
             throw new RuntimeException(e);
         }
+
+
+
         // 최상위 노드 찾기
         Element element = doc.getDocumentElement();
         String bjdCode = element.getElementsByTagName("bjdCode").item(0).getFirstChild().getNodeValue();
@@ -198,9 +249,8 @@ public class Search_result extends AppCompatActivity implements Serializable {
         String privArea = element.getElementsByTagName("privArea").item(0).getFirstChild().getNodeValue();
 //        search_result_txt.append("privArea: " + privArea + "\n");
 
-        search_result_txt.append(name);
-        TableLayout tableLayout = findViewById(R.id.tableLayout);
-        TableRow headerRow = tableLayout.findViewById(R.id.headerRow);
+
+
 
 //        addRowToTable("법정동 주소", kaptAddr, tableLayout);
         addRowToTable("도로명 주소", doroJuso, tableLayout);
@@ -228,8 +278,9 @@ public class Search_result extends AppCompatActivity implements Serializable {
 
 
         search_result_txt = findViewById(R.id.search_result_txt);
-        Button btn_checkList = findViewById(R.id.btn_checkList);
         btn_checkList.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
                 aptName = search_result_txt.getText().toString();
