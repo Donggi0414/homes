@@ -16,8 +16,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class FavoriteAdapter extends BaseAdapter {
+public class FavoriteListAdapter extends BaseAdapter {
     @NotNull
     private final Context context;
     @NotNull
@@ -35,6 +36,8 @@ public class FavoriteAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
+    public HashMap<String, String> result = new HashMap<>();
+
 
     @NotNull
     public View getView(int position, @Nullable View convertView, @Nullable ViewGroup parent) {
@@ -42,12 +45,16 @@ public class FavoriteAdapter extends BaseAdapter {
         TextView aptname = view.findViewById(R.id.aptname_tv);
         ApartmentInfo apt = (ApartmentInfo) this.aptList.get(position);
         System.out.println("aaaaaaaaaaaaa " + apt.aptname);
+        System.out.println("aaaaaaaaaaaaa " + apt.aptcode);
+        result.put(apt.aptname, apt.aptcode);
+
         CardView cardView = view.findViewById(R.id.cardview);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), WriteCheckList.class);
-                intent.putExtra("aptName", apt.aptname);
+                Intent intent = new Intent(v.getContext(), Search_result.class);
+                intent.putExtra("selectedItem", apt.aptname);
+                intent.putExtra("aptCodeList", result);
                 v.getContext().startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
 
             }
@@ -66,7 +73,7 @@ public class FavoriteAdapter extends BaseAdapter {
         return this.aptList;
     }
 
-    public FavoriteAdapter(@NotNull Context context, @NotNull ArrayList UserList) {
+    public FavoriteListAdapter(@NotNull Context context, @NotNull ArrayList UserList) {
         super();
         this.context = context;
         this.aptList = UserList;

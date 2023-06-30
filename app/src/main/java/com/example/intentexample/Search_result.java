@@ -104,7 +104,8 @@ public class Search_result extends AppCompatActivity implements Serializable {
                     mDatabaseRef.child("UserAccount")
                             .child(mFirebaseAuth.getUid())
                             .child("favorite")
-                            .push().setValue(aptCode);
+                            .child(name)
+                            .setValue(aptCode);
 
                 } else {
                     // 체크박스가 해제되었을 때
@@ -112,6 +113,7 @@ public class Search_result extends AppCompatActivity implements Serializable {
                     mDatabaseRef.child("UserAccount")
                             .child(mFirebaseAuth.getUid())
                             .child("favorite")
+                            .child(name)
                             .removeValue();
 
                 }
@@ -126,12 +128,11 @@ public class Search_result extends AppCompatActivity implements Serializable {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
 
                 apt_checklist = (HashMap<String, ?>) task.getResult().getValue();
-                System.out.println("aaaaaaaaa " + apt_checklist);
                 if (apt_checklist != null) {
                     for (String i : apt_checklist.keySet()){ //저장된 key값 확인
                         System.out.println("[Key]:" + i + " [Value]:" + apt_checklist.get(i));
                         HashMap<String, String> comment = (HashMap<String, String>) apt_checklist.get(i);
-                        aptname_list.add(new ApartmentInfo(comment.get("한줄평")));
+                        aptname_list.add(new ApartmentInfo(comment.get("한줄평"), ""));
                     }
 
                     ListAdapter adapter = new ListAdapter(getApplicationContext(), aptname_list);

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,32 +18,42 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class AptLike extends AppCompatActivity {
 
-    private TextView aptNameTextView;
     private DatabaseReference mDatabaseRef;
     private FirebaseAuth mFirebaseAuth;
+    HashMap<String , String> apt_favoritelist;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apt_like);
 
-        aptNameTextView = findViewById(R.id.aptNameTextView);
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("homes").child("UserAccount");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("homes");
         FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+        ListView favorite_lv = findViewById(R.id.favorite_lv);
 
-        // 파이어베이스에서 aptCode에 해당하는 아파트명 가져오기 여기 해결 필요!! (String aptCode = null; 및 하단에 child(aptcode) 에러남)
-        String aptName;
-        mDatabaseRef.child(firebaseUser.getUid()).child("favorite").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        ArrayList<ApartmentInfo> favorite_list = new ArrayList<ApartmentInfo>();
+        mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("favorite").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    // do something
-                } else {
-                    Log.d("firebase", "Data Already Added");
+                apt_favoritelist = (HashMap<String, String>) task.getResult().getValue();
+                System.out.println("aaaaaa " + apt_favoritelist);
+                if (apt_favoritelist != null) {
+                    for (String i : apt_favoritelist.keySet()){ //저장된 key값 확인
+                        System.out.println("[Key]:" + i + " [Value]:" + apt_favoritelist.get(i));
+                        favorite_list.add(new ApartmentInfo(i, apt_favoritelist.get(i)));
+                    }
+
+                    FavoriteListAdapter adapter = new FavoriteListAdapter(getApplicationContext(), favorite_list);
+                    favorite_lv.setAdapter(adapter);
                 }
+
             }
         });
     }

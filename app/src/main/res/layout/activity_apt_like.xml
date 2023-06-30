@@ -7,11 +7,17 @@
     android:background="@drawable/aptlike"
     tools:context=".AptLike">
 
-    <TextView
-        android:id="@+id/aptNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints" />
+    <ListView
+        android:id="@+id/favorite_lv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#95FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.21" />
 
 
 

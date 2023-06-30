@@ -46,7 +46,7 @@ public class checkList extends AppCompatActivity {
                 if (apt_checklist != null) {
                     for (String i : apt_checklist.keySet()){ //저장된 key값 확인
                         System.out.println("[Key]:" + i + " [Value]:" + apt_checklist.get(i));
-                        aptname_list.add(new ApartmentInfo(i));
+                        aptname_list.add(new ApartmentInfo(i, ""));
                     }
 
                     ListAdapter adapter = new ListAdapter(getApplicationContext(), aptname_list);

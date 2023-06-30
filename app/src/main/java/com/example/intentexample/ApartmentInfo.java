@@ -2,8 +2,10 @@ package com.example.intentexample;
 
 public class ApartmentInfo {
     String aptname;
+    String aptcode;
+    public ApartmentInfo(String apartname, String apartcode) {
 
-    public ApartmentInfo(String apartname) {
         aptname = apartname;
+        aptcode = apartcode;
     }
 }
