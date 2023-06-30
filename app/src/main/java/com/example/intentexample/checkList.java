@@ -43,13 +43,16 @@ public class checkList extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 apt_checklist = (HashMap<String, ?>) task.getResult().getValue();
-                for (String i : apt_checklist.keySet()){ //저장된 key값 확인
-                    System.out.println("[Key]:" + i + " [Value]:" + apt_checklist.get(i));
-                    aptname_list.add(new ApartmentInfo(i));
+                if (apt_checklist != null) {
+                    for (String i : apt_checklist.keySet()){ //저장된 key값 확인
+                        System.out.println("[Key]:" + i + " [Value]:" + apt_checklist.get(i));
+                        aptname_list.add(new ApartmentInfo(i));
+                    }
+
+                    ListAdapter adapter = new ListAdapter(getApplicationContext(), aptname_list);
+                    chcklist_lv.setAdapter(adapter);
                 }
 
-                ListAdapter adapter = new ListAdapter(getApplicationContext(), aptname_list);
-                chcklist_lv.setAdapter(adapter);
             }
         });
 

@@ -39,7 +39,7 @@ public class WriteCheckList extends AppCompatActivity {
     ImageView imageView1;
     private DatabaseReference mDatabaseRef;
     private FirebaseAuth mFirebaseAuth;
-    EditText parking, dong_dist, management, school_env, facilities, dong, area, total_price;
+    EditText parking, dong_dist, management, school_env, facilities, dong, area, total_price, comment;
     Button save_btn, delete_btn;
 
     @Override
@@ -59,6 +59,7 @@ public class WriteCheckList extends AppCompatActivity {
         dong = findViewById(R.id.dong);
         area = findViewById(R.id.area);
         total_price = findViewById(R.id.total_price);
+        comment = findViewById(R.id.comment);
 
         Intent intent = getIntent();
         String str = intent.getStringExtra("aptName");
@@ -133,15 +134,36 @@ public class WriteCheckList extends AppCompatActivity {
                 String dong_txt = dong.getText().toString();
                 String area_txt = area.getText().toString();
                 String total_price_txt = total_price.getText().toString();
+                String comment_txt = comment.getText().toString();
 
-                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("주차장").setValue(parking_txt);
-                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("동간거리").setValue(dong_dist_txt);
-                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("관리,조경").setValue(management_txt);
-                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("학교환경").setValue(school_env_txt);
-                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("편의시설").setValue(facilities_txt);
-                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("동,호수").setValue(dong_txt);
-                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("평형(전용)").setValue(area_txt);
-                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("예상총액").setValue(total_price_txt);
+                String apartname = tv_aptName.getText().toString();
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(apartname).child("주차장").setValue(parking_txt);
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(apartname).child("동간거리").setValue(dong_dist_txt);
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(apartname).child("관리,조경").setValue(management_txt);
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(apartname).child("학교환경").setValue(school_env_txt);
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(apartname).child("편의시설").setValue(facilities_txt);
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(apartname).child("동,호수").setValue(dong_txt);
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(apartname).child("평형(전용)").setValue(area_txt);
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(apartname).child("예상총액").setValue(total_price_txt);
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(apartname).child("한줄평").setValue(comment_txt);
+                // Checklist for sharing
+                mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("주차장").setValue(parking_txt);
+                mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("동간거리").setValue(dong_dist_txt);
+                mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("관리,조경").setValue(management_txt);
+                mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("학교환경").setValue(school_env_txt);
+                mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("편의시설").setValue(facilities_txt);
+                mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("동,호수").setValue(dong_txt);
+                mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("평형(전용)").setValue(area_txt);
+                mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("예상총액").setValue(total_price_txt);
+                mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("한줄평").setValue(comment_txt);
+
+
+
+
+
+
+
+
 
 
             }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -38,6 +40,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -57,6 +60,8 @@ public class Search_result extends AppCompatActivity implements Serializable {
     String aptCode;
     private String aptName;
     CheckBox myCheckBox;
+    HashMap<String , ?> apt_checklist;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -70,6 +75,8 @@ public class Search_result extends AppCompatActivity implements Serializable {
         String name = getIntent().getStringExtra("selectedItem");
         HashMap<String, String> aptcode_list = (HashMap<String, String>) getIntent().getSerializableExtra("aptCodeList");
         aptCode = aptcode_list.get(name);
+        FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+        ListView search_result_lv = findViewById(R.id.search_result_lv);
         System.out.println("selected item: " + name);
         System.out.println("apartment code: " + aptCode);
 
@@ -111,6 +118,28 @@ public class Search_result extends AppCompatActivity implements Serializable {
             }
         });
 
+
+        // get other checklists
+        ArrayList<ApartmentInfo> aptname_list = new ArrayList<ApartmentInfo>();
+        mDatabaseRef.child("Checklist").child(name).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+
+                apt_checklist = (HashMap<String, ?>) task.getResult().getValue();
+                System.out.println("aaaaaaaaa " + apt_checklist);
+                if (apt_checklist != null) {
+                    for (String i : apt_checklist.keySet()){ //저장된 key값 확인
+                        System.out.println("[Key]:" + i + " [Value]:" + apt_checklist.get(i));
+                        HashMap<String, String> comment = (HashMap<String, String>) apt_checklist.get(i);
+                        aptname_list.add(new ApartmentInfo(comment.get("한줄평")));
+                    }
+
+                    ListAdapter adapter = new ListAdapter(getApplicationContext(), aptname_list);
+                    search_result_lv.setAdapter(adapter);
+                }
+
+            }
+        });
 
 
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1613000/AptBasisInfoService1/getAphusBassInfo"); /*URL*/
@@ -249,9 +278,6 @@ public class Search_result extends AppCompatActivity implements Serializable {
         String privArea = element.getElementsByTagName("privArea").item(0).getFirstChild().getNodeValue();
 //        search_result_txt.append("privArea: " + privArea + "\n");
 
-
-
-
 //        addRowToTable("법정동 주소", kaptAddr, tableLayout);
         addRowToTable("도로명 주소", doroJuso, tableLayout);
 //        addRowToTable("법정 코드", bjdCode, tableLayout);
@@ -279,7 +305,6 @@ public class Search_result extends AppCompatActivity implements Serializable {
 
         search_result_txt = findViewById(R.id.search_result_txt);
         btn_checkList.setOnClickListener(new View.OnClickListener() {
-
 
             @Override
             public void onClick(View v) {

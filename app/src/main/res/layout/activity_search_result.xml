@@ -12,8 +12,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="411dp"
@@ -51,6 +49,7 @@
             </TableRow>
 
         </TableLayout>
+
     </ScrollView>
 
     <Button
@@ -73,6 +72,18 @@
         android:button="@android:drawable/btn_star"
         tools:ignore="MissingConstraints" />
 
+
+    <ListView
+        android:id="@+id/search_result_lv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#95FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="0.98" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

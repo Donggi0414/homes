@@ -32,6 +32,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -47,6 +48,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.maps.OnMapsSdkInitializedCallback;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -73,8 +75,8 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.googleMap);
         mapFragment.getMapAsync(this);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("homes");
-
-
+        OnMapsSdkInitializedCallback onMapsSdkInitializedCallback = null;
+        MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, onMapsSdkInitializedCallback);
 
 
     }
@@ -315,7 +317,7 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
                 String markerTitle = marker.getTitle();
                 // Intent 생성
                 Intent intent = new Intent(MapTrace.this, Search_result.class);
-
+                intent.putExtra("selectedItem", markerTitle);
                 // Intent에 필요한 데이터 추가 (옵션)
                 intent.putExtra("markerTitle", markerTitle);
                 mDatabaseRef.child("Apartments").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
