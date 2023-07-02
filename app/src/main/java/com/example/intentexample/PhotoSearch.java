@@ -223,7 +223,7 @@ public class PhotoSearch extends AppCompatActivity {
 //        btn_search.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                // 이 부분을 이것저것 해봐도 제꾸 에러가 나네요..... ㅠㅠ
+//                // 이 부분을 이것저것 해봐도 자꾸 에러가 나네요..... 위도 경도를 어떻게 담아야할지...
 //                Float Latitude = ;
 //                Float Longitude = ;
 //                // Intent 생성

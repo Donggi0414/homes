@@ -99,14 +99,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_clover.position(clover);
         m_clover.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng mokRyeon = new LatLng(36.35007, 127.392062); // 목련아파트
         MarkerOptions m_mokRyeon = new MarkerOptions();
         m_mokRyeon.title("목련");
         m_mokRyeon.snippet("1,166세대 / 30년 / 2,827만원");
         m_mokRyeon.position(mokRyeon);
         m_mokRyeon.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng hanmaru = new LatLng(36.354743, 127.392966); // 한마루럭키아파트
         MarkerOptions m_hanmaru = new MarkerOptions();
@@ -115,14 +113,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_hanmaru.position(hanmaru);
         m_hanmaru.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng hanmaruSamsung = new LatLng(36.354743, 127.391420); // 한마루삼성아파트
         MarkerOptions m_hanmaruSamsung = new MarkerOptions();
         m_hanmaruSamsung.title("한마루삼성");
         m_hanmaruSamsung.snippet("700세대 / 30년 / 2,303만원");
         m_hanmaruSamsung.position(hanmaruSamsung);
         m_hanmaruSamsung.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng yungjin = new LatLng(36.356312, 127.392448); // 영진햇님아파트
         MarkerOptions m_yungjin = new MarkerOptions();
@@ -131,14 +127,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_yungjin.position(yungjin);
         m_yungjin.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng doongji = new LatLng(36.358846, 127.392080); // 한신둥지아파트
         MarkerOptions m_doongji = new MarkerOptions();
         m_doongji.title("한신둥지");
         m_doongji.snippet("1,230세대 / 29년 / 1,750만원");
         m_doongji.position(doongji);
         m_doongji.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng sujung = new LatLng(36.358293, 127.397653); // 수정타운아파트
         MarkerOptions m_sujung = new MarkerOptions();
@@ -147,14 +141,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_sujung.position(sujung);
         m_sujung.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng garam = new LatLng(36.356453, 127.398101); // 둔산가람아파트
         MarkerOptions m_garam = new MarkerOptions();
         m_garam.title("둔산가람");
         m_garam.snippet("1,260세대 / 32년 / 1,946만원");
         m_garam.position(garam);
         m_garam.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng sindonga = new LatLng(36.355153, 127.396504); // 국화신동아아파트
         MarkerOptions m_sindonga = new MarkerOptions();
@@ -163,14 +155,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_sindonga.position(sindonga);
         m_sindonga.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng life = new LatLng(36.354695, 127.398340); // 국화라이프아파트
         MarkerOptions m_life = new MarkerOptions();
         m_life.title("국화라이프아파트");
         m_life.snippet("560세대 / 30년 / 1,690만원");
         m_life.position(life);
         m_life.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng dongsung = new LatLng(36.354613, 127.399763); // 국화동성아파트
         MarkerOptions m_dongsung = new MarkerOptions();
@@ -179,14 +169,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_dongsung.position(dongsung);
         m_dongsung.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng woosung = new LatLng(36.353536, 127.396526); // 국화우성아파트
         MarkerOptions m_woosung = new MarkerOptions();
         m_woosung.title("국화우성아파트");
         m_woosung.snippet("562세대 / 30년 / 1,850만원");
         m_woosung.position(woosung);
         m_woosung.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng hansin = new LatLng(36.352134, 127.396444); // 국화한신아파트
         MarkerOptions m_hansin = new MarkerOptions();
@@ -195,14 +183,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_hansin.position(hansin);
         m_hansin.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng cheongsol = new LatLng(36.352162, 127.398612); // 청솔아파트
         MarkerOptions m_cheongsol = new MarkerOptions();
         m_cheongsol.title("청솔아파트");
         m_cheongsol.snippet("980세대 / 31년 / 1,620만원");
         m_cheongsol.position(cheongsol);
         m_cheongsol.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng bora1 = new LatLng(36.352901, 127.400603); // 보라1단지아파트
         MarkerOptions m_bora1 = new MarkerOptions();
@@ -211,14 +197,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_bora1.position(bora1);
         m_bora1.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng bora2 = new LatLng(36.351899, 127.400720); // 보라2단지아파트
         MarkerOptions m_bora2 = new MarkerOptions();
         m_bora2.title("보라2단지");
         m_bora2.snippet("630세대 / 32년 / 1,181만원");
         m_bora2.position(bora2);
         m_bora2.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng dreamTree = new LatLng(36.360230, 127.391883); // 대우꿈나무아파트
         MarkerOptions m_dreamTree = new MarkerOptions();
@@ -227,14 +211,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_dreamTree.position(dreamTree);
         m_dreamTree.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng samhead1 = new LatLng(36.363300, 127.392006); // 샘머리1단지아파트
         MarkerOptions m_samhead1 = new MarkerOptions();
         m_samhead1.title("샘머리1단지");
         m_samhead1.snippet("1,350세대 / 24년 / 1,503만원");
         m_samhead1.position(samhead1);
         m_samhead1.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng samhead2 = new LatLng(36.361384, 127.393377); // 샘머리2단지아파트
         MarkerOptions m_samhead2 = new MarkerOptions();
@@ -243,14 +225,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_samhead2.position(samhead2);
         m_samhead2.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng silver = new LatLng(36.359975, 127.394067); // 은초롱아파트
         MarkerOptions m_silver = new MarkerOptions();
         m_silver.title("은초롱아파트");
         m_silver.snippet("120세대 / 29년 / 1,296만원");
         m_silver.position(silver);
         m_silver.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng milkyway = new LatLng(36.349522, 127.379544); // 둔산은하수아파트
         MarkerOptions m_milkyway = new MarkerOptions();
@@ -259,14 +239,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_milkyway.position(milkyway);
         m_milkyway.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng nokwon = new LatLng(36.347622, 127.380583); // 둔산녹원아파트
         MarkerOptions m_nokwon = new MarkerOptions();
         m_nokwon.title("녹원");
         m_nokwon.snippet("1,200세대 / 28년 / 1,566만원");
         m_nokwon.position(nokwon);
         m_nokwon.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng hyangchon = new LatLng(36.354033, 127.375504); // 향촌아파트
         MarkerOptions m_hyangchon = new MarkerOptions();
@@ -275,14 +253,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_hyangchon.position(hyangchon);
         m_hyangchon.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng bluebird = new LatLng(36.356354, 127.375475); // 둔산파랑새아파트
         MarkerOptions m_bluebird = new MarkerOptions();
         m_bluebird.title("파랑새아파트");
         m_bluebird.snippet("406세대 / 28년 / 1,653만원");
         m_bluebird.position(bluebird);
         m_bluebird.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
-
 
         LatLng moogoonghwa = new LatLng(36.363719, 127.377869); // 월평무궁화아파트
         MarkerOptions m_moogoonghwa = new MarkerOptions();
@@ -291,7 +267,6 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_moogoonghwa.position(moogoonghwa);
         m_moogoonghwa.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng hanarum = new LatLng(36.363389, 127.375570); // 한아름아파트
         MarkerOptions m_hanarum = new MarkerOptions();
         m_hanarum.title("한아름");
@@ -299,13 +274,55 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_hanarum.position(hanarum);
         m_hanarum.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
 
-
         LatLng beakhap = new LatLng(36.361619, 127.375615); // 백합아파트
         MarkerOptions m_beakhap = new MarkerOptions();
         m_beakhap.title("백합");
         m_beakhap.snippet("622세대 / 30년 / 1,444만원");
         m_beakhap.position(beakhap);
         m_beakhap.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
+
+        LatLng hwangsil = new LatLng(36.360938, 127.371689); // 황실타운아파트
+        MarkerOptions m_hwangsil = new MarkerOptions();
+        m_hwangsil.title("황실타운아파트");
+        m_hwangsil.snippet("1950세대 / 29년 / 1,361만원");
+        m_hwangsil.position(hwangsil);
+        m_hwangsil.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
+
+        LatLng satstar = new LatLng(36.360428, 127.375607); // 샛별아파트
+        MarkerOptions m_satatar = new MarkerOptions();
+        m_satatar.title("샛별");
+        m_satatar.snippet("450세대 / 30년 / 1,460만원");
+        m_satatar.position(satstar);
+        m_satatar.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
+
+        LatLng rainbow = new LatLng(36.358888, 127.375555); // 무지개아파트
+        MarkerOptions m_rainbow = new MarkerOptions();
+        m_rainbow.title("샛별");
+        m_rainbow.snippet("600세대 / 29년 / 1,625만원");
+        m_rainbow.position(rainbow);
+        m_rainbow.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
+
+        LatLng noori = new LatLng(36.358872, 127.371349); // 누리아파트
+        MarkerOptions m_noori = new MarkerOptions();
+        m_noori.title("누리아파트");
+        m_noori.snippet("1704세대 / 29년 / 1,899만원");
+        m_noori.position(noori);
+        m_noori.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
+
+        LatLng jindalre = new LatLng(36.359021, 127.366872); // 진달래아파트
+        MarkerOptions m_jindalre = new MarkerOptions();
+        m_jindalre.title("진달래아파트");
+        m_jindalre.snippet("1080세대 / 28년 / 1,322만원");
+        m_jindalre.position(jindalre);
+        m_jindalre.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
+
+        LatLng damoa = new LatLng(36.361341, 127.366114); // 다모아아파트
+        MarkerOptions m_damoa = new MarkerOptions();
+        m_damoa.title("다모아타운");
+        m_damoa.snippet("1260세대 / 29년 / 1,276만원");
+        m_damoa.position(damoa);
+        m_damoa.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));
+
 
 
         // 마커 info window 클릭시 검색화면으로 이동하도록
@@ -377,6 +394,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         m_moogoonghwa.icon(resizedBitmapDescriptor);
         m_hanarum.icon(resizedBitmapDescriptor);
         m_beakhap.icon(resizedBitmapDescriptor);
+        m_hwangsil.icon(resizedBitmapDescriptor);
+        m_satatar.icon(resizedBitmapDescriptor);
+        m_rainbow.icon(resizedBitmapDescriptor);
+        m_noori.icon(resizedBitmapDescriptor);
+        m_jindalre.icon(resizedBitmapDescriptor);
+        m_damoa.icon(resizedBitmapDescriptor);
 
 
 // 마커 추가
@@ -410,6 +433,13 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
         Marker moogoonghwaMarker = this.googleMap.addMarker(m_moogoonghwa);
         Marker hanarumMarker = this.googleMap.addMarker(m_hanarum);
         Marker beakhapMarker = this.googleMap.addMarker(m_beakhap);
+        Marker hwangsilMarker = this.googleMap.addMarker(m_hwangsil);
+        Marker satatarMarker = this.googleMap.addMarker(m_satatar);
+        Marker rainbowMarker = this.googleMap.addMarker(m_rainbow);
+        Marker nooriMarker = this.googleMap.addMarker(m_noori);
+        Marker jindalreMarker = this.googleMap.addMarker(m_jindalre);
+        Marker damoaMarker = this.googleMap.addMarker(m_damoa);
+
 
 
         googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
@@ -451,6 +481,12 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
                 moogoonghwaMarker.setIcon(resizedBitmapDescriptor);
                 hanarumMarker.setIcon(resizedBitmapDescriptor);
                 beakhapMarker.setIcon(resizedBitmapDescriptor);
+                hwangsilMarker.setIcon(resizedBitmapDescriptor);
+                satatarMarker.setIcon(resizedBitmapDescriptor);
+                rainbowMarker.setIcon(resizedBitmapDescriptor);
+                nooriMarker.setIcon(resizedBitmapDescriptor);
+                jindalreMarker.setIcon(resizedBitmapDescriptor);
+                damoaMarker.setIcon(resizedBitmapDescriptor);
 
             }
         });
