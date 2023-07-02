@@ -77,11 +77,25 @@ public class PhotoMapSearch extends AppCompatActivity implements OnMapReadyCallb
         OnMapsSdkInitializedCallback onMapsSdkInitializedCallback = null;
         MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, onMapsSdkInitializedCallback);
 
+//        // PhotoSearch 로부터 받아온 위도, 경도 (여기다 넣는게 맞는지도...)
+//        Float Latitude = getIntent().getFloatExtra("Latitude");
+//        Float Longitude = getIntent().getFloatExtra("Longitude");
+
     }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.googleMap = googleMap;
+
+//        // PhotoSearch 로부터 받아온 위도, 경도에 새로운 마커(current) 추가
+//
+//        LatLng current = new LatLng(Latitude, Longitude);
+//        MarkerOptions m_current = new MarkerOptions();
+//        m_current.title("촬영위치");
+//        m_current.position(current);
+//        this.googleMap.addMarker(current);
+//        this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 16));
+
 
         LatLng kaist = new LatLng(36.3680066, 127.3658049); // 카이스트 E3-2
         MarkerOptions m_kaist = new MarkerOptions();
@@ -89,6 +103,8 @@ public class PhotoMapSearch extends AppCompatActivity implements OnMapReadyCallb
         m_kaist.snippet("한국과학기술원");
         m_kaist.position(kaist);
         this.googleMap.addMarker(m_kaist);
+
+
 
         LatLng clover = new LatLng(36.352428, 127.392585); // 크로바아파트
         MarkerOptions m_clover = new MarkerOptions();
@@ -380,7 +396,6 @@ public class PhotoMapSearch extends AppCompatActivity implements OnMapReadyCallb
 
 // 마커 추가
 
-        this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(kaist, 16));
 
         Marker cloverMarker = this.googleMap.addMarker(m_clover);
         Marker mokRyeonMarker = this.googleMap.addMarker(m_mokRyeon);
