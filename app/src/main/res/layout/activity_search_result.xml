@@ -3,87 +3,127 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/searchresult">
 
-    <TextView
-        android:id="@+id/search_result_txt"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="411dp"
-        android:layout_height="683dp"
-        tools:layout_editor_absoluteY="48dp"
-        tools:ignore="MissingConstraints">
-
-        <TableLayout
-            android:id="@+id/tableLayout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/table_outside"
-            android:stretchColumns="*">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-            <!-- 테이블 헤더 행 -->
-            <TableRow android:id="@+id/headerRow">
+            <TextView
+                android:id="@+id/search_result_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
-                <TextView
-                    android:layout_width="20dp"
-                    android:background="@drawable/table_inside_gray"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:text="구분"
-                    android:textStyle="bold" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
-                <TextView
-                    android:background="@drawable/table_inside_gray"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:text="결과"
-                    android:textStyle="bold" />
-            </TableRow>
+            <CheckBox
+                android:id="@+id/myCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:layout_marginEnd="15dp"
+                android:button="@android:drawable/btn_star"
+                tools:ignore="MissingConstraints" />
 
-        </TableLayout>
+        </LinearLayout>
 
-    </ScrollView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:text="기본 정보"
+            android:layout_marginStart="15dp"/>
 
-    <Button
-        android:id="@+id/btn_checkList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="체크리스트"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="411dp"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="48dp"
+            tools:ignore="MissingConstraints">
 
-    <CheckBox
-        android:id="@+id/myCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:button="@android:drawable/btn_star"
-        tools:ignore="MissingConstraints" />
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/table_outside"
+                android:stretchColumns="*">
 
+                <!-- 테이블 헤더 행 -->
+                <TableRow android:id="@+id/headerRow">
 
-    <ListView
-        android:id="@+id/search_result_lv"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#95FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.98" />
+                    <TextView
+                        android:layout_width="20dp"
+                        android:background="@drawable/table_inside_gray"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="구분"
+                        android:textStyle="bold" />
 
+                    <TextView
+                        android:background="@drawable/table_inside_gray"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="결과"
+                        android:textStyle="bold" />
+                </TableRow>
+
+            </TableLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:text="홈즈 체크리스트"
+                android:layout_marginStart="15dp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/btn_checkList"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/btnchecklist"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/search_result_lv"
+            android:layout_width="246dp"
+            android:layout_height="180dp"
+            android:background="#95FFFFFF"
+            android:layout_marginStart="160dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

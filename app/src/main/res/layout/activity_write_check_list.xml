@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WriteCheckList">
+    tools:context=".WriteCheckList"
+    android:background="@drawable/writechecklist">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,21 +18,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_aptName"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:text="TextView"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.093"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.051" />
+                android:orientation="horizontal"
+                android:layout_marginTop="17dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_aptName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="TextView"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/save_btn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@android:color/transparent"/>
+
+                <Button
+                    android:id="@+id/delete"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,12 +68,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
-
                         android:text="현장사진"
-                        android:textSize="15sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         tools:layout_editor_absoluteX="52dp"
-                        tools:layout_editor_absoluteY="81dp" />
+                        tools:layout_editor_absoluteY="81dp"/>
 
                     <Button
                         android:id="@+id/btn_addPhoto"
@@ -64,8 +81,15 @@
                         android:layout_marginLeft="10dp"
                         android:text="추가"
                         android:textSize="10sp"
-                        android:padding="2dp"
-                        android:textColor="@color/white" />
+                        android:padding="2dp"/>
+                    <Button
+                        android:id="@+id/btn_deletePhoto"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="제거"
+                        android:textSize="10sp"
+                        android:padding="2dp"/>
 
                 </LinearLayout>
 
@@ -78,19 +102,22 @@
                         android:id="@+id/imageView1"
                         android:layout_width="130dp"
                         android:layout_height="130dp"
-                        android:layout_marginEnd="5dp" />
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/imageview1"/>
 
                     <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="130dp"
                         android:layout_height="130dp"
-                        android:layout_marginEnd="5dp"/>
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/imageview2"/>
 
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="130dp"
                         android:layout_height="130dp"
-                        android:layout_marginEnd="5dp"/>
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/imageview3"/>
 
                 </LinearLayout>
 
@@ -99,46 +126,38 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-                <TableLayout
-                    android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp">
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="2.3"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:padding="10sp"
+                    android:text="아파트한줄평 : "
+                    android:textStyle="bold"
+                    android:textSize="17sp" />
 
-                    <TableRow android:background="@drawable/table_row_background">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_weight="1.5"
-                            android:background="@drawable/table_inside_gray"
-                            android:gravity="center"
-                            android:padding="10sp"
-                            android:text="한줄평"
-                            android:textSize="15sp" />
-
-                        <EditText
-                            android:id="@+id/comment"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_weight="4.5"
-                            android:background="@null"
-                            android:padding="10sp"
-                            android:textSize="15sp" />
-
-                    </TableRow>
-                </TableLayout>
+                <EditText
+                    android:id="@+id/comment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="4"
+                    android:background="@null"
+                    android:padding="10sp"
+                    android:textSize="15sp"
+                    android:layout_marginEnd="15dp"/>
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -147,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:text="단지 체크리스트"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="52dp"
                     tools:layout_editor_absoluteY="81dp" />
@@ -168,7 +187,7 @@
                             android:gravity="center"
                             android:padding="10sp"
                             android:text="주차장"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                         <EditText
                             android:id="@+id/parking"
@@ -178,7 +197,7 @@
                             android:layout_weight="4.5"
                             android:background="@null"
                             android:padding="10sp"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                     </TableRow>
 
@@ -193,7 +212,7 @@
                             android:gravity="center"
                             android:padding="10sp"
                             android:text="동간거리"
-                            android:textSize="15sp" />
+                            android:textSize="12sp"/>
 
                         <EditText
                             android:id="@+id/dong_dist"
@@ -203,7 +222,7 @@
                             android:layout_weight="4.5"
                             android:background="@null"
                             android:padding="10sp"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                     </TableRow>
 
@@ -218,7 +237,7 @@
                             android:gravity="center"
                             android:padding="10sp"
                             android:text="관리/조경"
-                            android:textSize="15sp" />
+                            android:textSize="12sp"/>
 
                         <EditText
                             android:id="@+id/management"
@@ -228,7 +247,7 @@
                             android:layout_weight="4.5"
                             android:background="@null"
                             android:padding="10sp"
-                            android:textSize="15sp" />
+                            android:textSize="12sp"/>
 
                     </TableRow>
 
@@ -243,7 +262,7 @@
                             android:gravity="center"
                             android:padding="10sp"
                             android:text="학교환경"
-                            android:textSize="15sp" />
+                            android:textSize="12sp"/>
 
                         <EditText
                             android:id="@+id/school_env"
@@ -253,7 +272,7 @@
                             android:layout_weight="4.5"
                             android:background="@null"
                             android:padding="10sp"
-                            android:textSize="15sp" />
+                            android:textSize="12sp"/>
 
                     </TableRow>
 
@@ -268,7 +287,7 @@
                             android:gravity="center"
                             android:padding="10sp"
                             android:text="편의시설"
-                            android:textSize="15sp" />
+                            android:textSize="12sp"/>
 
                         <EditText
                             android:id="@+id/facilities"
@@ -278,7 +297,7 @@
                             android:layout_weight="4.5"
                             android:background="@null"
                             android:padding="10sp"
-                            android:textSize="15sp" />
+                            android:textSize="12sp"/>
 
                     </TableRow>
 
@@ -293,16 +312,17 @@
                             android:gravity="center"
                             android:padding="10sp"
                             android:text="교통"
-                            android:textSize="15sp" />
+                            android:textSize="12sp"/>
 
                         <EditText
+                            android:id="@+id/transport"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="4.5"
                             android:background="@null"
                             android:padding="10sp"
-                            android:textSize="15sp" />
+                            android:textSize="12sp"/>
 
                     </TableRow>
 
@@ -313,7 +333,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -322,7 +342,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:text="매물 체크리스트"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="52dp"
                     tools:layout_editor_absoluteY="81dp" />
@@ -343,7 +363,7 @@
                             android:gravity="center"
                             android:padding="10sp"
                             android:text="동/호수"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                         <EditText
                             android:id="@+id/dong"
@@ -353,7 +373,7 @@
                             android:layout_weight="4.5"
                             android:background="@null"
                             android:padding="10sp"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                     </TableRow>
 
@@ -368,7 +388,7 @@
                             android:gravity="center"
                             android:padding="10sp"
                             android:text="평형(전용)"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                         <EditText
                             android:id="@+id/area"
@@ -378,7 +398,7 @@
                             android:layout_weight="4.5"
                             android:background="@null"
                             android:padding="10sp"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                     </TableRow>
 
@@ -393,7 +413,7 @@
                             android:gravity="center"
                             android:padding="10sp"
                             android:text="예상총액"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                         <EditText
                             android:id="@+id/total_price"
@@ -403,34 +423,13 @@
                             android:layout_weight="4.5"
                             android:background="@null"
                             android:padding="10sp"
-                            android:textSize="15sp" />
+                            android:textSize="12sp" />
 
                     </TableRow>
 
                 </TableLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal">
-
-                <Button
-                    android:id="@+id/save_btn"
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:text="저장"
-                    android:layout_marginEnd="50dp"/>
-
-                <Button
-                    android:id="@+id/delete"
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:text="삭제" />
-
-            </LinearLayout>
-
 
         </LinearLayout>
     </ScrollView>

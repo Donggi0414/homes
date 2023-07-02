@@ -290,18 +290,18 @@ public class Search_result extends AppCompatActivity implements Serializable {
         addRowToTable("총 세대수", hoCnt, tableLayout);
         addRowToTable("복도 유형", codeHallNm, tableLayout);
         addRowToTable("관리 방식", codeMgrNm, tableLayout);
-        addRowToTable("분양 형태", codeSaleNm, tableLayout);
+//        addRowToTable("분양 형태", codeSaleNm, tableLayout);
 //        addRowToTable("세대수", kaptdaCnt, tableLayout);
         addRowToTable("60㎡이하 세대수", kaptMparea_60, tableLayout);
         addRowToTable("85㎡이하 세대수", kaptMparea_85, tableLayout);
         addRowToTable("135㎡이하 세대수", kaptMparea_135, tableLayout);
         addRowToTable("136㎡이하 세대수", kaptMparea_136, tableLayout);
-        addRowToTable("단지 전용면적합", privArea+"㎡", tableLayout);
-        addRowToTable("관리비부과 면적", kaptMarea+"㎡", tableLayout);
-        addRowToTable("건물대장 연면적", kaptTarea+"㎡", tableLayout);
+//        addRowToTable("단지 전용면적합", privArea+"㎡", tableLayout);
+//        addRowToTable("관리비부과 면적", kaptMarea+"㎡", tableLayout);
+//        addRowToTable("건물대장 연면적", kaptTarea+"㎡", tableLayout);
         addRowToTable("관리사무소 연락처", kaptTel, tableLayout);
-        addRowToTable("관리사무소 팩스", kaptFax, tableLayout);
-        addRowToTable("홈페이지 주소", kaptUrl, tableLayout);
+//        addRowToTable("관리사무소 팩스", kaptFax, tableLayout);
+//        addRowToTable("홈페이지 주소", kaptUrl, tableLayout);
 
 
         search_result_txt = findViewById(R.id.search_result_txt);

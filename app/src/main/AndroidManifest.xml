@@ -7,11 +7,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera"
-        android:required="true"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -25,8 +27,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".WriteCheckList"
+            android:name=".PhotoMapSearch"
             android:exported="false" />
+        <activity
+            android:name=".WriteCheckList"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".AptLike"
             android:exported="false" />
@@ -64,14 +70,16 @@
             android:exported="true" />
         <activity
             android:name=".Search"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".Search_result"
             android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${GOOGLE_MAPS_API_KEY}" />
+            android:value="AIzaSyDI7Lc41sYo2DsFa-ZPpcGrabGE7WqqmCo" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.intentexample.fileprovider"

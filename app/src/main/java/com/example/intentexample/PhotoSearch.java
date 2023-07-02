@@ -42,7 +42,7 @@ import java.text.SimpleDateFormat;
 public class PhotoSearch extends AppCompatActivity {
 
     // One Button
-    Button BSelectImage, take_photo_btn;
+    Button BSelectImage, take_photo_btn, btn_search;
     TextView textView;
     // One Preview Image
     ImageView IVPreviewImage;
@@ -180,6 +180,7 @@ public class PhotoSearch extends AppCompatActivity {
         BSelectImage = findViewById(R.id.BSelectImage);
         IVPreviewImage = findViewById(R.id.IVPreviewImage);
         take_photo_btn = findViewById(R.id.take_photo_btn);
+        btn_search = findViewById(R.id.btn_search);
         if (Build.VERSION.SDK_INT >= 30) {
             if (!Environment.isExternalStorageManager()) {
                 Intent getpermission = new Intent();
@@ -219,6 +220,18 @@ public class PhotoSearch extends AppCompatActivity {
                 dispatchTakePictureIntent();
             }
         });
+//        btn_search.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // 이 부분을 이것저것 해봐도 제꾸 에러가 나네요..... ㅠㅠ
+//                Float Latitude = ;
+//                Float Longitude = ;
+//                // Intent 생성
+//                Intent intent = new Intent(PhotoSearch.this, PhotoMapSearch.class);
+//                intent.putExtra("Latitude", Latitude);
+//                intent.putExtra("Longitude", Longitude);
+//            }
+//        });
     }
 
     // this function is triggered when
