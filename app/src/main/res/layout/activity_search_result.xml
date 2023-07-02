@@ -122,6 +122,7 @@
             android:layout_width="246dp"
             android:layout_height="180dp"
             android:background="#95FFFFFF"
+            android:divider="@android:color/transparent"
             android:layout_marginStart="160dp" />
 
     </LinearLayout>
