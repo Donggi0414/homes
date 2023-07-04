@@ -43,12 +43,11 @@ public class PhotoSearch extends AppCompatActivity {
 
     // One Button
     Button BSelectImage, take_photo_btn, btn_search;
-    TextView textView;
     // One Preview Image
     ImageView IVPreviewImage;
     String mCurrentPhotoPath;
     private FusedLocationProviderClient fusedLocationClient;
-
+    Float Latitude, Longitude;
 
     // constant to compare
     // the activity result code
@@ -72,8 +71,6 @@ public class PhotoSearch extends AppCompatActivity {
                                     try {
                                         in = getContentResolver().openInputStream(selectedImageUri);
                                         exifInterface = new ExifInterface(in);
-                                    } catch (FileNotFoundException e) {
-                                        throw new RuntimeException(e);
                                     } catch (IOException e) {
                                         throw new RuntimeException(e);
                                     }
@@ -81,21 +78,29 @@ public class PhotoSearch extends AppCompatActivity {
                                     String attrLATITUDE_REF = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
                                     String attrLONGITUDE = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
                                     String attrLONGITUDE_REF = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF);
-                                    Float Latitude, Longitude;
-                                    if(attrLATITUDE_REF.equals("N")){
-                                        Latitude = convertToDegree(attrLATITUDE);
+
+                                    if (attrLATITUDE_REF != null && attrLONGITUDE_REF != null) {
+                                        if (attrLATITUDE_REF.equals("N")) {
+                                            Latitude = convertToDegree(attrLATITUDE);
+                                        }
+                                        else {
+                                            Latitude = 0 - convertToDegree(attrLATITUDE);
+                                        }
+
+                                        if (attrLONGITUDE_REF.equals("E")) {
+                                            Longitude = convertToDegree(attrLONGITUDE);
+                                        }
+                                        else {
+                                            Longitude = 0 - convertToDegree(attrLONGITUDE);
+                                        }
                                     }
-                                    else{
-                                        Latitude = 0 - convertToDegree(attrLATITUDE);
+                                    else {
+                                        Latitude = 0f;
+                                        Longitude = 0f;
+
                                     }
 
-                                    if(attrLONGITUDE_REF.equals("E")){
-                                        Longitude = convertToDegree(attrLONGITUDE);
-                                    }
-                                    else{
-                                        Longitude = 0 - convertToDegree(attrLONGITUDE);
-                                    }
-                                    System.out.println(Latitude + " " + Longitude);
+                                    System.out.println("Retrieved Location Data: " + Latitude + " " + Longitude);
                                 }
 
                             }
@@ -127,21 +132,29 @@ public class PhotoSearch extends AppCompatActivity {
                                 String attrLATITUDE_REF = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
                                 String attrLONGITUDE = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
                                 String attrLONGITUDE_REF = exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF);
-                                Float Latitude, Longitude;
-                                if(attrLATITUDE_REF.equals("N")){
-                                    Latitude = convertToDegree(attrLATITUDE);
-                                }
-                                else{
-                                    Latitude = 0 - convertToDegree(attrLATITUDE);
-                                }
 
-                                if(attrLONGITUDE_REF.equals("E")){
-                                    Longitude = convertToDegree(attrLONGITUDE);
+                                if (attrLATITUDE_REF != null && attrLONGITUDE_REF != null) {
+
+                                    if (attrLATITUDE_REF.equals("N")) {
+                                        Latitude = convertToDegree(attrLATITUDE);
+                                    }
+                                    else {
+                                        Latitude = 0 - convertToDegree(attrLATITUDE);
+                                    }
+
+                                    if (attrLONGITUDE_REF.equals("E")) {
+                                        Longitude = convertToDegree(attrLONGITUDE);
+                                    }
+                                    else {
+                                        Longitude = 0 - convertToDegree(attrLONGITUDE);
+                                    }
                                 }
-                                else{
-                                    Longitude = 0 - convertToDegree(attrLONGITUDE);
+                                else {
+                                    Latitude = 0f;
+                                    Longitude = 0f;
+
                                 }
-                                System.out.println(Latitude + " " + Longitude);
+                                System.out.println("Retrieved Location Data: " + Latitude + " " + Longitude);
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
@@ -204,7 +217,6 @@ public class PhotoSearch extends AppCompatActivity {
         }
 
 
-
         // handle the Choose Image button to trigger
         // the image chooser function
         BSelectImage.setOnClickListener(new View.OnClickListener() {
@@ -220,18 +232,18 @@ public class PhotoSearch extends AppCompatActivity {
                 dispatchTakePictureIntent();
             }
         });
-//        btn_search.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // 이 부분을 이것저것 해봐도 자꾸 에러가 나네요..... 위도 경도를 어떻게 담아야할지...
-//                Float Latitude = ;
-//                Float Longitude = ;
-//                // Intent 생성
-//                Intent intent = new Intent(PhotoSearch.this, PhotoMapSearch.class);
-//                intent.putExtra("Latitude", Latitude);
-//                intent.putExtra("Longitude", Longitude);
-//            }
-//        });
+
+        // search using location data from images
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Intent 생성
+                Intent intent = new Intent(PhotoSearch.this, PhotoMapSearch.class);
+                intent.putExtra("Latitude", Latitude);
+                intent.putExtra("Longitude", Longitude);
+                startActivity(intent);
+            }
+        });
     }
 
     // this function is triggered when
@@ -297,7 +309,10 @@ public class PhotoSearch extends AppCompatActivity {
                             // Got last known location. In some rare situations this can be null.
                             if (location != null) {
                                 finalExif.setAttribute(ExifInterface.TAG_GPS_LATITUDE, String.valueOf(location.getLatitude()));
+                                finalExif.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF, latitudeRef(location.getLatitude()));
                                 finalExif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE, String.valueOf(location.getLongitude()));
+                                finalExif.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF, longitudeRef(location.getLongitude()));
+
                             }
                         }
                     });
@@ -330,8 +345,16 @@ public class PhotoSearch extends AppCompatActivity {
         Double FloatS = S0/S1;
 
         result = new Float(FloatD + (FloatM/60) + (FloatS/3600));
-
         return result;
+    }
 
+    // get latitude ref
+    public static String latitudeRef(double latitude) {
+        return latitude<0.0d?"S":"N";
+    }
+
+    // get longitude ref
+    public static String longitudeRef(double longitude) {
+        return longitude<0.0d?"W":"E";
     }
 }

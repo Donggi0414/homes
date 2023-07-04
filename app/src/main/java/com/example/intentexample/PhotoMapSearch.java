@@ -63,6 +63,7 @@ public class PhotoMapSearch extends AppCompatActivity implements OnMapReadyCallb
     private GoogleMap googleMap;
 
     public HashMap<String, String> result = new HashMap<>();
+    Float Latitude, Longitude;
 
 
     @Override
@@ -77,9 +78,10 @@ public class PhotoMapSearch extends AppCompatActivity implements OnMapReadyCallb
         OnMapsSdkInitializedCallback onMapsSdkInitializedCallback = null;
         MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, onMapsSdkInitializedCallback);
 
-//        // PhotoSearch 로부터 받아온 위도, 경도 (여기다 넣는게 맞는지도 잘...)
-//        Float Latitude = getIntent().getFloatExtra("Latitude");
-//        Float Longitude = getIntent().getFloatExtra("Longitude");
+        Latitude = getIntent().getExtras().getFloat("Latitude");
+        Longitude =  getIntent().getExtras().getFloat("Longitude");
+        System.out.println("Latitude: " + Latitude);
+        System.out.println("Longitude: " + Longitude);
 
     }
 
@@ -87,16 +89,13 @@ public class PhotoMapSearch extends AppCompatActivity implements OnMapReadyCallb
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.googleMap = googleMap;
 
-//        // PhotoSearch 로부터 받아온 위도,경도에 새로운 마커(current)를 추가
-//
-//        LatLng current = new LatLng(Latitude, Longitude);
-//        MarkerOptions m_current = new MarkerOptions();
-//        m_current.title("촬영위치");
-//        m_current.position(current);
-//        this.googleMap.addMarker(current);
-
-          // 새로 추가된 마커로 카메라를 이동
-//        this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 16));
+        // PhotoSearch 로부터 받아온 위도,경도에 새로운 마커(current)를 추가
+        LatLng current = new LatLng(Latitude, Longitude);
+        MarkerOptions m_current = new MarkerOptions();
+        m_current.title("촬영위치");
+        m_current.position(current);
+        this.googleMap.addMarker(m_current);
+        this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 16));
 
 
         LatLng kaist = new LatLng(36.3680066, 127.3658049); // 카이스트 E3-2
