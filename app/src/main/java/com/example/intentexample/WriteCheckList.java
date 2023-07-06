@@ -4,7 +4,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.widget.Toast;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.metrics.Event;
@@ -247,6 +247,7 @@ public class WriteCheckList extends AppCompatActivity {
                 mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("예상총액").setValue(total_price_txt);
                 mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("한줄평").setValue(comment_txt);
 
+                Toast.makeText(WriteCheckList.this, "체크리스트 저장 완료!", Toast.LENGTH_SHORT).show();
             }
         });
 
