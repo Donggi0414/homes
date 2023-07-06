@@ -30,14 +30,30 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
 
-            <CheckBox
-                android:id="@+id/myCheckBox"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
+                android:orientation="vertical"
                 android:layout_marginEnd="15dp"
-                android:button="@android:drawable/btn_star"
-                tools:ignore="MissingConstraints" />
+                android:gravity="center_horizontal">
+
+                <CheckBox
+                    android:id="@+id/myCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:button="@android:drawable/btn_star"
+                    tools:ignore="MissingConstraints"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="관심등록"
+                    android:textSize="10sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -93,7 +109,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -108,22 +125,32 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
 
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/writebtn"/>
+
             <Button
                 android:id="@+id/btn_checkList"
-                android:layout_width="35dp"
+                android:layout_width="60dp"
                 android:layout_height="35dp"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/btnchecklist"/>
+                android:text="작성하기"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="1dp"
+                android:background="@android:color/transparent"/>
+
 
         </LinearLayout>
 
         <ListView
             android:id="@+id/search_result_lv"
-            android:layout_width="246dp"
+            android:layout_width="240dp"
             android:layout_height="180dp"
             android:background="#95FFFFFF"
             android:divider="@android:color/transparent"
-            android:layout_marginStart="160dp" />
+            android:layout_marginStart="160dp"/>
 
     </LinearLayout>
 

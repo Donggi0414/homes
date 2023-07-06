@@ -135,7 +135,7 @@ public class Search_result extends AppCompatActivity implements Serializable {
                         aptname_list.add(new ApartmentInfo(comment.get("한줄평"), ""));
                     }
 
-                    ListAdapter adapter = new ListAdapter(getApplicationContext(), aptname_list);
+                    checklistAdapter adapter = new checklistAdapter(getApplicationContext(), aptname_list);
                     search_result_lv.setAdapter(adapter);
                 }
 

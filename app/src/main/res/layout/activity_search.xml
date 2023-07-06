@@ -9,15 +9,17 @@
 
     <SearchView
         android:id="@+id/search_view"
-        android:layout_width="299dp"
-        android:layout_height="48dp"
+        android:layout_width="286dp"
+        android:layout_height="47dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
+        android:iconifiedByDefault="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.149" />
+        app:layout_constraintVertical_bias="0.172" />
 
     <ListView
         android:id="@+id/listView"
@@ -29,7 +31,7 @@
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_view"
-        app:layout_constraintVertical_bias="0.029" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <!--    <TextView-->
 <!--        android:id="@+id/TextView"-->

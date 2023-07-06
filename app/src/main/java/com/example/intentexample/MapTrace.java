@@ -143,7 +143,7 @@ public class MapTrace extends AppCompatActivity implements OnMapReadyCallback {
 
         LatLng garam = new LatLng(36.356453, 127.398101); // 둔산가람아파트
         MarkerOptions m_garam = new MarkerOptions();
-        m_garam.title("둔산가람");
+        m_garam.title("가람아파트");
         m_garam.snippet("1,260세대 / 32년 / 1,946만원");
         m_garam.position(garam);
         m_garam.icon(BitmapDescriptorFactory.fromResource(R.drawable.apartment));

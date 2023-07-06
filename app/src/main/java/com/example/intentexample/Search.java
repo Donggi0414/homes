@@ -38,6 +38,15 @@ public class Search extends AppCompatActivity{
         setContentView(R.layout.activity_search);
 
         final SearchView searchView = findViewById(R.id.search_view);
+        searchView.setIconifiedByDefault(false); // 돋보기 아이콘을 기본으로 숨기지 않도록 설정
+        searchView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    searchView.setIconified(false); // 포커스를 받으면 돋보기 아이콘을 보이도록 설정
+                }
+            }
+        });
         ListView listView = findViewById(R.id.listView);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("homes");
         mDatabaseRef.child("Apartments").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
