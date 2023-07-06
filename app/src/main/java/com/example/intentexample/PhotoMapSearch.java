@@ -98,12 +98,12 @@ public class PhotoMapSearch extends AppCompatActivity implements OnMapReadyCallb
         this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 16));
 
 
-        LatLng kaist = new LatLng(36.3680066, 127.3658049); // 카이스트 E3-2
-        MarkerOptions m_kaist = new MarkerOptions();
-        m_kaist.title("카이스트(KAIST) 전산학동");
-        m_kaist.snippet("한국과학기술원");
-        m_kaist.position(kaist);
-        this.googleMap.addMarker(m_kaist);
+//        LatLng kaist = new LatLng(36.3680066, 127.3658049); // 카이스트 E3-2
+//        MarkerOptions m_kaist = new MarkerOptions();
+//        m_kaist.title("카이스트(KAIST) 전산학동");
+//        m_kaist.snippet("한국과학기술원");
+//        m_kaist.position(kaist);
+//        this.googleMap.addMarker(m_kaist);
 
         LatLng clover = new LatLng(36.352428, 127.392585); // 크로바아파트
         MarkerOptions m_clover = new MarkerOptions();

@@ -247,8 +247,6 @@ public class WriteCheckList extends AppCompatActivity {
                 mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("예상총액").setValue(total_price_txt);
                 mDatabaseRef.child("Checklist").child(apartname).child(firebaseUser.getUid()).child("한줄평").setValue(comment_txt);
 
-
-
             }
         });
 

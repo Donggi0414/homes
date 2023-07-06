@@ -4,34 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main3"
+    android:background="@drawable/startmain"
     tools:context=".MainActivity">
 
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="137dp"
-        android:layout_height="39dp"
-        android:layout_marginBottom="92dp"
+        android:layout_width="148dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="112dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="141dp"
-        android:layout_height="38dp"
+        android:layout_width="147dp"
+        android:layout_height="45dp"
         android:layout_marginTop="472dp"
         android:background="@android:color/transparent"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.722" />
+        app:layout_constraintVertical_bias="0.857" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
