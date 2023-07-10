@@ -163,25 +163,6 @@ public class PhotoSearch extends AppCompatActivity {
                 }
             });
 
-    ActivityResultLauncher<String[]> locationPermissionRequest =
-            registerForActivityResult(new ActivityResultContracts
-                            .RequestMultiplePermissions(), result -> {
-                        Boolean fineLocationGranted = result.getOrDefault(
-                                android.Manifest.permission.ACCESS_FINE_LOCATION, false);
-                        Boolean coarseLocationGranted = result.getOrDefault(
-                                android.Manifest.permission.ACCESS_COARSE_LOCATION, false);
-                        Boolean backgroundLocation = result.getOrDefault(
-                                android.Manifest.permission.ACCESS_BACKGROUND_LOCATION, false);
-                        if (fineLocationGranted != null && fineLocationGranted) {
-                            // Precise location access granted.
-                        } else if (coarseLocationGranted != null && coarseLocationGranted) {
-                            // Only approximate location access granted.
-                        } else {
-                            // No location access granted.
-                        }
-                    }
-            );
-
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -202,18 +183,18 @@ public class PhotoSearch extends AppCompatActivity {
             }
         }
 
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED || checkSelfPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            locationPermissionRequest.launch(new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_BACKGROUND_LOCATION
-            });
+        if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            System.out.println("already has all permissions");
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            } else {
-                ActivityCompat.requestPermissions(PhotoSearch.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            }
+        else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{
+                            Manifest.permission.CAMERA,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                    },
+                    1);
         }
 
 

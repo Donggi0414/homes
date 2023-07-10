@@ -3,6 +3,7 @@ package com.example.intentexample;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
@@ -68,6 +70,9 @@ public class Search_result extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         search_result_txt = findViewById(R.id.search_result_txt);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("homes");
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -79,6 +84,7 @@ public class Search_result extends AppCompatActivity implements Serializable {
         ListView search_result_lv = findViewById(R.id.search_result_lv);
         System.out.println("selected item: " + name);
         System.out.println("apartment code: " + aptCode);
+
 
         search_result_txt.append(name);
         TableLayout tableLayout = findViewById(R.id.tableLayout);
@@ -141,7 +147,6 @@ public class Search_result extends AppCompatActivity implements Serializable {
 
             }
         });
-
 
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1613000/AptBasisInfoService1/getAphusBassInfo"); /*URL*/
         try {
@@ -228,80 +233,154 @@ public class Search_result extends AppCompatActivity implements Serializable {
             throw new RuntimeException(e);
         }
 
-
-
         // 최상위 노드 찾기
         Element element = doc.getDocumentElement();
-        String bjdCode = element.getElementsByTagName("bjdCode").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("bjdCode: " + bjdCode + "\n");
-        String kaptCode = element.getElementsByTagName("codeAptNm").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptCode: " + kaptCode + "\n");
-        String codeHallNm = element.getElementsByTagName("codeHallNm").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("codeHallNm: " + codeHallNm + "\n");
-        String codeMgrNm = element.getElementsByTagName("codeMgrNm").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("codeMgrNm: " + codeMgrNm + "\n");
-        String codeSaleNm = element.getElementsByTagName("codeSaleNm").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("codeSaleNm: " + codeSaleNm + "\n");
-        String doroJuso = element.getElementsByTagName("doroJuso").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("doroJuso: " + doroJuso + "\n");
-        String hoCnt = element.getElementsByTagName("hoCnt").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("hoCnt: " + hoCnt + "\n");
-        String kaptAcompany = element.getElementsByTagName("kaptAcompany").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptAcompany: " + kaptAcompany + "\n");
-        String kaptBcompany = element.getElementsByTagName("kaptBcompany").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptBcompany: " + kaptBcompany + "\n");
-        String kaptAddr = element.getElementsByTagName("kaptAddr").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptAddr: " + kaptAddr + "\n");
-        String kaptDongCnt = element.getElementsByTagName("kaptDongCnt").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptDongCnt: " + kaptDongCnt + "\n");
-        String kaptFax = element.getElementsByTagName("kaptFax").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptFax: " + kaptFax + "\n");
-        String kaptMarea = element.getElementsByTagName("kaptMarea").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptMarea: " + kaptMarea + "\n");
-        String kaptMparea_60 = element.getElementsByTagName("kaptMparea_60").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptMparea_60: " + kaptMparea_60 + "\n");
-        String kaptMparea_85 = element.getElementsByTagName("kaptMparea_85").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptMparea_85: " + kaptMparea_85 + "\n");
-        String kaptMparea_135 = element.getElementsByTagName("kaptMparea_135").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptMparea_135: " + kaptMparea_135 + "\n");
-        String kaptMparea_136 = element.getElementsByTagName("kaptMparea_136").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptMparea_136: " + kaptMparea_136 + "\n");
-        String kaptTarea = element.getElementsByTagName("kaptTarea").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptTarea: " + kaptTarea + "\n");
-        String kaptTel = element.getElementsByTagName("kaptTel").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptTel: " + kaptTel + "\n");
-        String kaptUrl = element.getElementsByTagName("kaptUrl").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptUrl: " + kaptUrl + "\n");
-        String kaptUsedate = element.getElementsByTagName("kaptUsedate").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptUsedate: " + kaptUsedate + "\n");
-        String kaptdaCnt = element.getElementsByTagName("kaptTarea").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("kaptdaCnt: " + kaptdaCnt + "\n");
-        String privArea = element.getElementsByTagName("privArea").item(0).getFirstChild().getNodeValue();
-//        search_result_txt.append("privArea: " + privArea + "\n");
+        if (element != null) {
 
-//        addRowToTable("법정동 주소", kaptAddr, tableLayout);
-        addRowToTable("도로명 주소", doroJuso, tableLayout);
-//        addRowToTable("법정 코드", bjdCode, tableLayout);
-        addRowToTable("단지 코드", kaptCode, tableLayout);
-        addRowToTable("시행사", kaptAcompany, tableLayout);
-        addRowToTable("시공사", kaptBcompany, tableLayout);
-        addRowToTable("사용승인일", kaptUsedate, tableLayout);
-        addRowToTable("동 수", kaptDongCnt, tableLayout);
-        addRowToTable("총 세대수", hoCnt, tableLayout);
-        addRowToTable("복도 유형", codeHallNm, tableLayout);
-        addRowToTable("관리 방식", codeMgrNm, tableLayout);
-//        addRowToTable("분양 형태", codeSaleNm, tableLayout);
-//        addRowToTable("세대수", kaptdaCnt, tableLayout);
-        addRowToTable("60㎡이하 세대수", kaptMparea_60, tableLayout);
-        addRowToTable("85㎡이하 세대수", kaptMparea_85, tableLayout);
-        addRowToTable("135㎡이하 세대수", kaptMparea_135, tableLayout);
-        addRowToTable("136㎡이하 세대수", kaptMparea_136, tableLayout);
-//        addRowToTable("단지 전용면적합", privArea+"㎡", tableLayout);
-//        addRowToTable("관리비부과 면적", kaptMarea+"㎡", tableLayout);
-//        addRowToTable("건물대장 연면적", kaptTarea+"㎡", tableLayout);
-        addRowToTable("관리사무소 연락처", kaptTel, tableLayout);
-//        addRowToTable("관리사무소 팩스", kaptFax, tableLayout);
-//        addRowToTable("홈페이지 주소", kaptUrl, tableLayout);
+            String kaptCode = "";
+            NodeList codeAptNmList = element.getElementsByTagName("codeAptNm");
+            if (codeAptNmList.getLength() > 0) {
+                Node codeAptNmNode = codeAptNmList.item(0);
+                if (codeAptNmNode.hasChildNodes()) {
+                    kaptCode = codeAptNmNode.getFirstChild().getNodeValue();
+                }
+            }
+
+            String codeHallNm = "";
+            NodeList codeHallNmList = element.getElementsByTagName("codeHallNm");
+            if (codeHallNmList.getLength() > 0) {
+                Node codeHallNmNode = codeHallNmList.item(0);
+                if (codeHallNmNode.hasChildNodes()) {
+                    codeHallNm = codeHallNmNode.getFirstChild().getNodeValue();
+                }
+            }
+
+            String codeMgrNm = "";
+            NodeList codeMgrNmList = element.getElementsByTagName("codeMgrNm");
+            if (codeMgrNmList.getLength() > 0) {
+                Node codeMgrNmNode = codeMgrNmList.item(0);
+                if (codeMgrNmNode.hasChildNodes()) {
+                    codeMgrNm = codeMgrNmNode.getFirstChild().getNodeValue();
+                }
+            }
+
+            String doroJuso = "";
+            NodeList doroJusoList = element.getElementsByTagName("doroJuso");
+            if (doroJusoList.getLength() > 0) {
+                Node doroJusoNode = doroJusoList.item(0);
+                if (doroJusoNode.hasChildNodes()) {
+                    doroJuso = doroJusoNode.getFirstChild().getNodeValue();
+                }
+            }
+
+            String hoCnt = "";
+            NodeList hoCntList = element.getElementsByTagName("hoCnt");
+            if (hoCntList.getLength() > 0) {
+                Node hoCntNode = hoCntList.item(0);
+                if (hoCntNode.hasChildNodes()) {
+                    hoCnt = hoCntNode.getFirstChild().getNodeValue();
+                }
+            }
+
+            String kaptAcompany = "";
+            NodeList kaptAcompanyList = element.getElementsByTagName("kaptAcompany");
+            if (kaptAcompanyList.getLength() > 0) {
+                Node kaptAcompanyNode = kaptAcompanyList.item(0);
+                if (kaptAcompanyNode.hasChildNodes()) {
+                    kaptAcompany = kaptAcompanyNode.getFirstChild().getNodeValue();
+                }
+            }
+
+            String kaptBcompany = "";
+            NodeList kaptBcompanyList = element.getElementsByTagName("kaptBcompany");
+            if (kaptBcompanyList.getLength() > 0) {
+                Node kaptBcompanyNode = kaptBcompanyList.item(0);
+                if (kaptBcompanyNode.hasChildNodes()) {
+                    kaptBcompany = kaptBcompanyNode.getFirstChild().getNodeValue();
+                }
+            }
+
+            String kaptDongCnt = "";
+            NodeList kaptDongCntList = element.getElementsByTagName("kaptDongCnt");
+            if (kaptDongCntList.getLength() > 0) {
+                Node kaptDongCntNode = kaptDongCntList.item(0);
+                if (kaptDongCntNode.hasChildNodes()) {
+                    kaptDongCnt = kaptDongCntNode.getFirstChild().getNodeValue();
+                }
+            }
+
+            String kaptMparea_60 = "";
+            NodeList kaptMparea_60List = element.getElementsByTagName("kaptMparea_60");
+            if (kaptMparea_60List.getLength() > 0) {
+                Node kaptMparea_60Node = kaptMparea_60List.item(0);
+                if (kaptMparea_60Node.hasChildNodes()) {
+                    kaptMparea_60 = kaptMparea_60Node.getFirstChild().getNodeValue();
+                }
+            }
+
+            String kaptMparea_85 = "";
+            NodeList kaptMparea_85List = element.getElementsByTagName("kaptMparea_85");
+            if (kaptMparea_85List.getLength() > 0) {
+                Node kaptMparea_85Node = kaptMparea_85List.item(0);
+                if (kaptMparea_85Node.hasChildNodes()) {
+                    kaptMparea_85 = kaptMparea_85Node.getFirstChild().getNodeValue();
+                }
+            }
+
+            String kaptMparea_135 = "";
+            NodeList kaptMparea_135List = element.getElementsByTagName("kaptMparea_135");
+            if (kaptMparea_135List.getLength() > 0) {
+                Node kaptMparea_135Node = kaptMparea_135List.item(0);
+                if (kaptMparea_135Node.hasChildNodes()) {
+                    kaptMparea_135 = kaptMparea_135Node.getFirstChild().getNodeValue();
+                }
+            }
+
+            String kaptMparea_136 = "";
+            NodeList kaptMparea_136List = element.getElementsByTagName("kaptMparea_136");
+            if (kaptMparea_136List.getLength() > 0) {
+                Node kaptMparea_136Node = kaptMparea_136List.item(0);
+                if (kaptMparea_136Node.hasChildNodes()) {
+                    kaptMparea_136 = kaptMparea_136Node.getFirstChild().getNodeValue();
+                }
+            }
+
+
+            String kaptTel = "";
+            NodeList kaptTelList = element.getElementsByTagName("kaptTel");
+            if (kaptTelList.getLength() > 0) {
+                Node kaptTelNode = kaptTelList.item(0);
+                if (kaptTelNode.hasChildNodes()) {
+                    kaptTel = kaptTelNode.getFirstChild().getNodeValue();
+                }
+            }
+
+            String kaptUsedate = "";
+            NodeList kaptUsedateList = element.getElementsByTagName("kaptUsedate");
+            if (kaptUsedateList.getLength() > 0) {
+                Node kaptUsedateNode = kaptUsedateList.item(0);
+                if (kaptUsedateNode.hasChildNodes()) {
+                    kaptUsedate = kaptUsedateNode.getFirstChild().getNodeValue();
+                }
+            }
+
+
+            addRowToTable("도로명 주소", doroJuso, tableLayout);
+            addRowToTable("단지 코드", kaptCode, tableLayout);
+            addRowToTable("시행사", kaptAcompany, tableLayout);
+            addRowToTable("시공사", kaptBcompany, tableLayout);
+            addRowToTable("사용승인일", kaptUsedate, tableLayout);
+            addRowToTable("동 수", kaptDongCnt, tableLayout);
+            addRowToTable("총 세대수", hoCnt, tableLayout);
+            addRowToTable("복도 유형", codeHallNm, tableLayout);
+            addRowToTable("관리 방식", codeMgrNm, tableLayout);
+            addRowToTable("60㎡이하 세대수", kaptMparea_60, tableLayout);
+            addRowToTable("85㎡이하 세대수", kaptMparea_85, tableLayout);
+            addRowToTable("135㎡이하 세대수", kaptMparea_135, tableLayout);
+            addRowToTable("136㎡이하 세대수", kaptMparea_136, tableLayout);
+            addRowToTable("관리사무소 연락처", kaptTel, tableLayout);
+        }
+
 
 
         search_result_txt = findViewById(R.id.search_result_txt);

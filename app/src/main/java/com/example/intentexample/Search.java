@@ -75,7 +75,7 @@ public class Search extends AppCompatActivity{
                 // 클릭된 아이템의 텍스트를 가져와 SearchView에 입력합니다.
                 String selectedItem = searchResults.get(position);
                 searchView.setQuery(selectedItem, false);
-                System.out.println("aaaaaaa " + selectedItem);
+                System.out.println("selected search item: " + selectedItem);
                 // Create an intent to start the second activity
                 Intent intent = new Intent(Search.this, Search_result.class);
                 // Optionally you can pass data to the new activity
