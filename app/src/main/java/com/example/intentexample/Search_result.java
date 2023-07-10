@@ -138,7 +138,8 @@ public class Search_result extends AppCompatActivity implements Serializable {
                     for (String i : apt_checklist.keySet()){ //저장된 key값 확인
                         System.out.println("[Key]:" + i + " [Value]:" + apt_checklist.get(i));
                         HashMap<String, String> comment = (HashMap<String, String>) apt_checklist.get(i);
-                        aptname_list.add(new ApartmentInfo(comment.get("한줄평"), ""));
+                        String user = i;
+                        aptname_list.add(new ApartmentInfo(name, comment.get("한줄평"), "", user));
                     }
 
                     checklistAdapter adapter = new checklistAdapter(getApplicationContext(), aptname_list);

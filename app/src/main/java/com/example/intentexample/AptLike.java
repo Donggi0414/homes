@@ -47,7 +47,7 @@ public class AptLike extends AppCompatActivity {
                 if (apt_favoritelist != null) {
                     for (String i : apt_favoritelist.keySet()){ //저장된 key값 확인
                         System.out.println("[Key]:" + i + " [Value]:" + apt_favoritelist.get(i));
-                        favorite_list.add(new ApartmentInfo(i, apt_favoritelist.get(i)));
+                        favorite_list.add(new ApartmentInfo(i, "", apt_favoritelist.get(i), firebaseUser.getUid()));
                     }
 
                     FavoriteListAdapter adapter = new FavoriteListAdapter(getApplicationContext(), favorite_list);
