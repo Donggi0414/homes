@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">intentExample</string>
+    <string name="app_name">"알려줘홈즈"</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

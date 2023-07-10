@@ -49,7 +49,7 @@ public class checklistAdapter extends BaseAdapter{
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), WriteCheckList.class);
+                Intent intent = new Intent(v.getContext(), SharedChecklist.class);
                 intent.putExtra("aptName", apt.aptname);
                 v.getContext().startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
 

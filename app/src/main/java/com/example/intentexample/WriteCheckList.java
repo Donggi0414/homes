@@ -208,6 +208,13 @@ public class WriteCheckList extends AppCompatActivity {
             }
         });
 
+        mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(str).child("한줄평").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                comment.setText((CharSequence) task.getResult().getValue());
+            }
+        });
+
 
         save_btn = findViewById(R.id.save_btn);
         save_btn.setOnClickListener(new View.OnClickListener() {
@@ -265,6 +272,7 @@ public class WriteCheckList extends AppCompatActivity {
                 dong.setText("");
                 area.setText("");
                 total_price.setText("");
+                comment.setText("");
                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("주차장").setValue("");
                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("동간거리").setValue("");
                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("관리,조경").setValue("");
@@ -274,6 +282,7 @@ public class WriteCheckList extends AppCompatActivity {
                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("동,호수").setValue("");
                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("평형(전용)").setValue("");
                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("예상총액").setValue("");
+                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).child("checklist").child(tv_aptName.getText().toString()).child("한줄평").setValue("");
             }
         });
 

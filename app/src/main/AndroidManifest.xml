@@ -27,12 +27,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".SharedChecklist"
+            android:exported="false" />
+        <activity
             android:name=".PhotoMapSearch"
             android:exported="false" />
         <activity
             android:name=".WriteCheckList"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".AptLike"
             android:exported="false" />
@@ -71,7 +74,7 @@
         <activity
             android:name=".Search"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Search_result"
             android:exported="false" />

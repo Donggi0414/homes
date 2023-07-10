@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SharedChecklist">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="23dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_aptName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="TextView"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="현장사진"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="52dp"
+                        tools:layout_editor_absoluteY="81dp"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10sp">
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/imageview1"/>
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/imageview2"/>
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/imageview3"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="20sp"
+                    android:background="@drawable/comment"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="2.3"
+                    android:gravity="center"
+                    android:padding="10sp"
+                    android:text="아파트한줄평 : "
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/comment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="4"
+                    android:background="@null"
+                    android:padding="10sp"
+                    android:textSize="15sp"
+                    android:layout_marginEnd="15dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="단지 체크리스트"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="52dp"
+                    tools:layout_editor_absoluteY="81dp" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <TableRow android:background="@drawable/table_row_background">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/table_inside_gray"
+                            android:gravity="center"
+                            android:padding="10sp"
+                            android:text="주차장"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/parking"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="4.5"
+                            android:background="@null"
+                            android:padding="10sp"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                    <TableRow android:background="@drawable/table_row_background">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/table_inside_gray"
+                            android:gravity="center"
+                            android:padding="10sp"
+                            android:text="동간거리"
+                            android:textSize="12sp"/>
+
+                        <EditText
+                            android:id="@+id/dong_dist"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="4.5"
+                            android:background="@null"
+                            android:padding="10sp"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                    <TableRow android:background="@drawable/table_row_background">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/table_inside_gray"
+                            android:gravity="center"
+                            android:padding="10sp"
+                            android:text="관리/조경"
+                            android:textSize="12sp"/>
+
+                        <EditText
+                            android:id="@+id/management"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="4.5"
+                            android:background="@null"
+                            android:padding="10sp"
+                            android:textSize="12sp"/>
+
+                    </TableRow>
+
+                    <TableRow android:background="@drawable/table_row_background">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/table_inside_gray"
+                            android:gravity="center"
+                            android:padding="10sp"
+                            android:text="학교환경"
+                            android:textSize="12sp"/>
+
+                        <EditText
+                            android:id="@+id/school_env"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="4.5"
+                            android:background="@null"
+                            android:padding="10sp"
+                            android:textSize="12sp"/>
+
+                    </TableRow>
+
+                    <TableRow android:background="@drawable/table_row_background">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/table_inside_gray"
+                            android:gravity="center"
+                            android:padding="10sp"
+                            android:text="편의시설"
+                            android:textSize="12sp"/>
+
+                        <EditText
+                            android:id="@+id/facilities"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="4.5"
+                            android:background="@null"
+                            android:padding="10sp"
+                            android:textSize="12sp"/>
+
+                    </TableRow>
+
+                    <TableRow android:background="@drawable/table_row_background">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/table_inside_gray"
+                            android:gravity="center"
+                            android:padding="10sp"
+                            android:text="교통"
+                            android:textSize="12sp"/>
+
+                        <EditText
+                            android:id="@+id/transport"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="4.5"
+                            android:background="@null"
+                            android:padding="10sp"
+                            android:textSize="12sp"/>
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="매물 체크리스트"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="52dp"
+                    tools:layout_editor_absoluteY="81dp" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <TableRow android:background="@drawable/table_row_background">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/table_inside_gray"
+                            android:gravity="center"
+                            android:padding="10sp"
+                            android:text="동/호수"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/dong"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="4.5"
+                            android:background="@null"
+                            android:padding="10sp"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                    <TableRow android:background="@drawable/table_row_background">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/table_inside_gray"
+                            android:gravity="center"
+                            android:padding="10sp"
+                            android:text="평형(전용)"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/area"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="4.5"
+                            android:background="@null"
+                            android:padding="10sp"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                    <TableRow android:background="@drawable/table_row_background">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/table_inside_gray"
+                            android:gravity="center"
+                            android:padding="10sp"
+                            android:text="예상총액"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/total_price"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="4.5"
+                            android:background="@null"
+                            android:padding="10sp"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/bottom"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
